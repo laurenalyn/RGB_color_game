@@ -24,6 +24,7 @@ for(let i = 0; i < squares.length; i++){
         // compare color to pickedColor
         if(clickedColor === pickedColor){
             messageDislay.textContent = "Correct!"
+            changeColors(clickedColor);
         } else {
             // fades incorecct color out to eliminate that choice"
             this.style.backgroundColor = "#232323";
@@ -31,4 +32,12 @@ for(let i = 0; i < squares.length; i++){
         }
     });
 } 
+
+function changeColors(color){
+    // loop through all squares
+    for(let i = 0; i < squares.length; i++){
+        // change each color to match a given color
+        squares[i].style.backgroundColor = color;
+    }
+}
 
