@@ -15,5 +15,20 @@ let colorDisplay = document.querySelector("#colorDisplay");
 colorDisplay.textContent = pickedColor;
 
 for(let i = 0; i < squares.length; i++){
+    // add initial colors to squares
     squares[i].style.backgroundColor = colors[i];
+
+    // add click listeners to squares
+    squares[i].addEventListener("click", function(){
+        // console.log("glicked a square");
+        // grab color of clicked square
+        let clickedColor = this.style.backgroundColor;
+        // compare color to pickedColor
+        if(clickedColor === pickedColor){
+            console.log("Correct!");
+        } else {
+            console.log("Incorrect.");
+        }
+    });
 } 
+
