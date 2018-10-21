@@ -8,7 +8,12 @@ let colors = [
 ]
 
 let squares = document.querySelectorAll(".square");
+let pickedColor = colors[3];
+let colorDisplay = document.querySelector("#colorDisplay");
 //style.background currently doesn't work in firefox. use .backgroundColor instead
+
+colorDisplay.textContent = pickedColor;
+
 for(let i = 0; i < squares.length; i++){
-    squares[i].style.backgroundColor = colors[i]
+    squares[i].style.backgroundColor = colors[i];
 } 
