@@ -6,11 +6,10 @@ let colors = [
     "rgb(0, 0, 255)",
     "rgb(255, 0, 255)",
 ]
-
-let squares = document.querySelectorAll(".square");
 let pickedColor = colors[3];
-let colorDisplay = document.querySelector("#colorDisplay");
-//style.background currently doesn't work in firefox. use .backgroundColor instead
+let squares = document.querySelectorAll(".square");
+let colorDisplay = document.querySelector("#colorDisplay"); //style.background currently doesn't work in firefox. use .backgroundColor instead
+let messageDislay = document.querySelector("#message");
 
 colorDisplay.textContent = pickedColor;
 
@@ -24,11 +23,11 @@ for(let i = 0; i < squares.length; i++){
         let clickedColor = this.style.backgroundColor;
         // compare color to pickedColor
         if(clickedColor === pickedColor){
-            console.log("Correct!");
+            messageDislay.textContent = "Correct!"
         } else {
-            console.log("Incorrect.");
             // fades incorecct color out to eliminate that choice"
-            this.style.backgroundColor = "#232323"
+            this.style.backgroundColor = "#232323";
+            messageDislay.textContent = "Try Again";
         }
     });
 } 
