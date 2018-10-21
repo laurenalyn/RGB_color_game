@@ -20,7 +20,6 @@ for(let i = 0; i < squares.length; i++){
 
     // add click listeners to squares
     squares[i].addEventListener("click", function(){
-        // console.log("glicked a square");
         // grab color of clicked square
         let clickedColor = this.style.backgroundColor;
         // compare color to pickedColor
@@ -28,6 +27,8 @@ for(let i = 0; i < squares.length; i++){
             console.log("Correct!");
         } else {
             console.log("Incorrect.");
+            // fades incorecct color out to eliminate that choice"
+            this.style.backgroundColor = "#232323"
         }
     });
 } 
