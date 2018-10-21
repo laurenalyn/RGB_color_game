@@ -6,7 +6,7 @@ let colors = [
     "rgb(0, 0, 255)",
     "rgb(255, 0, 255)",
 ]
-let pickedColor = colors[3];
+let pickedColor = pickColor();
 let squares = document.querySelectorAll(".square");
 let colorDisplay = document.querySelector("#colorDisplay"); //style.background currently doesn't work in firefox. use .backgroundColor instead
 let messageDislay = document.querySelector("#message");
@@ -38,6 +38,12 @@ function changeColors(color){
     for(let i = 0; i < squares.length; i++){
         // change each color to match a given color
         squares[i].style.backgroundColor = color;
+        console.log(squares[i].style);
     }
 }
+
+function pickColor(){
+    let random = Math.floor(Math.random() * colors.length);
+    return colors[random];
+};
 
