@@ -4,13 +4,26 @@ let squares = document.querySelectorAll(".square");
 let colorDisplay = document.querySelector("#colorDisplay"); //style.background currently doesn't work in firefox. use .backgroundColor instead
 let messageDislay = document.querySelector("#message");
 let h1 = document.querySelector('h1');
+let resetButton = document.querySelector("#reset");
 
+resetButton.addEventListener('click', function() {
+    // generate all new colors
+    colors = generateRandomColors(6);
+    // pick new random color from arr
+    pickedColor = pickColor();
+    // change color display to match picked color
+    colorDisplay.textContent = pickedColor;
+    // change colors of squares
+    for(let i = 0; i < squares.length; i++) {
+        squares[i].style.backgroundColor = colors[i];
+    }
+    h1.style.backgroundColor = "#232323";
+})
 colorDisplay.textContent = pickedColor;
 
 for(let i = 0; i < squares.length; i++) {
     // add initial colors to squares
     squares[i].style.backgroundColor = colors[i];
-
     // add click listeners to squares
     squares[i].addEventListener("click", function() {
         // grab color of clicked square
@@ -19,7 +32,11 @@ for(let i = 0; i < squares.length; i++) {
         console.log(clickedColor, pickedColor);
         if(clickedColor === pickedColor) {
             messageDislay.textContent = "Correct!"
+
+            resetButton.textContent = "Play Again?"
+
             changeColors(clickedColor);
+
             h1.style.backgroundColor = clickedColor;
         } else {
             // fades incorecct color out to eliminate that choice"
