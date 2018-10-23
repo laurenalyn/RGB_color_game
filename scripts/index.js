@@ -3,6 +3,7 @@ let pickedColor = pickColor();
 let squares = document.querySelectorAll(".square");
 let colorDisplay = document.querySelector("#colorDisplay"); //style.background currently doesn't work in firefox. use .backgroundColor instead
 let messageDislay = document.querySelector("#message");
+let h1 = document.querySelector('h1');
 
 colorDisplay.textContent = pickedColor;
 
@@ -19,6 +20,7 @@ for(let i = 0; i < squares.length; i++) {
         if(clickedColor === pickedColor) {
             messageDislay.textContent = "Correct!"
             changeColors(clickedColor);
+            h1.style.backgroundColor = clickedColor;
         } else {
             // fades incorecct color out to eliminate that choice"
             this.style.backgroundColor = "#232323";
@@ -62,4 +64,3 @@ function randomColor() {
     let b = Math.floor(Math.random() * 256)
     return "rgb(" + r + ", " + g + ", " + b + ")";
 }
-
