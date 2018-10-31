@@ -3,59 +3,52 @@ let colorDisplay = document.querySelector("#colorDisplay"); //style.background c
 let messageDislay = document.querySelector("#message");
 let h1 = document.querySelector('h1');
 let resetButton = document.querySelector("#reset");
-let easyBtn = document.querySelector("#easyBtn");
-let hardBtn = document.querySelector("#hardBtn");
+let modeButtons = document.querySelectorAll(".mode");
 let numSquares = 6;
 let colors = generateRandomColors(numSquares);
 let pickedColor = pickColor();
 
-easyBtn.addEventListener("click", function(){
-    hardBtn.classList.remove("selected");
-    easyBtn.classList.add("selected");
-    numSquares = 3;
+for (let i = 0; i < modeButtons.length; i++) {
+    modeButtons[i].addEventListener('click', function() {
+        modeButtons[0].classList.remove("selected");
+        modeButtons[1].classList.remove("selected");
+        this.classList.add("selected");
+        this.textContent === "Easy" ? numSquares = 3: numSquares = 6
+        // above line is another way to write the if/else statement below
+        // if(this.textContent === "Easy"){
+        //     numSquares = 3
+        // } else {
+        //     numSquares = 6
+        // } 
+        reset();
+    });
+}
+
+function reset() {
     colors = generateRandomColors(numSquares);
+    // pick new random color from arr
     pickedColor = pickColor();
+    // change color display to match picked color
     colorDisplay.textContent = pickedColor;
-    for (let i = 0; i < squares.length; i ++) {
+    resetButton.textContent = "New Colors";
+    messageDislay.textContent = "";
+    // change colors of squares
+    for(let i = 0; i < squares.length; i++) {
+
         if(colors[i]){
+            squares[i].style.display = "block";
             squares[i].style.backgroundColor = colors[i];
         } else {
             squares[i].style.display = "none";
         }
     }
     h1.style.backgroundColor = "slateblue";
-});
-
-hardBtn.addEventListener("click", function() {
-    easyBtn.classList.remove("selected");
-    hardBtn.classList.add("selected");
-    numSquares = 6;
-    colors = generateRandomColors(numSquares);
-    pickedColor = pickColor();
-    colorDisplay.textContent = pickedColor;
-    for (let i = 0; i < squares.length; i ++) {
-        squares[i].style.backgroundColor = colors[i];
-        squares[i].style.display = "block";
-        }
-    h1.style.backgroundColor = "slateblue";    
-});
+}
 
 resetButton.addEventListener('click', function() {
-    // generate all new colors
-    colors = generateRandomColors(numSquares);
-    // pick new random color from arr
-    pickedColor = pickColor();
-    // change color display to match picked color
-    colorDisplay.textContent = pickedColor;
-    messageDislay.textContent = "";
-    // change colors of squares
-    for(let i = 0; i < squares.length; i++) {
-        squares[i].style.backgroundColor = colors[i];
-    }
-    this.textContent = "New Colors";
-
-    h1.style.backgroundColor = "slateblue";
+    reset();
 })
+
 colorDisplay.textContent = pickedColor;
 
 for(let i = 0; i < squares.length; i++) {
